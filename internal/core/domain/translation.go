@@ -6,7 +6,7 @@ type TranslationInput struct {
 }
 
 type Translation struct {
-	ID                     *int32 `json:"id"`
+	ID                     int32  `json:"id"`
 	Text                   string `json:"text"`
 	Translation            string `json:"translation"`
 	LanguageDestination    string `json:"language_destination"`

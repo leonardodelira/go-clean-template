@@ -8,17 +8,17 @@ import (
 )
 
 type requestBody struct {
-	Text                string `json:"text" required:"true"`
-	LanguageDestination string `json:"language_destination" required:"true"`
+	Text                string `json:"text" binding:"required"`
+	LanguageDestination string `json:"language_destination" binding:"required"`
 }
 
-func ParseRequest(c *gin.Context) (domain.TranslationInput, error) {
-	body := requestBody{}
-	if err := c.Bind(&body); err != nil {
-		return domain.TranslationInput{}, fmt.Errorf("error on bind body")
+func ParseRequest(c *gin.Context) (*domain.TranslationInput, error) {
+	var body requestBody
+	if err := c.ShouldBindJSON(&body); err != nil {
+		return nil, fmt.Errorf("error on bind body")
 	}
 
-	return domain.TranslationInput{
+	return &domain.TranslationInput{
 		Text:                body.Text,
 		LanguageDestination: body.LanguageDestination,
 	}, nil

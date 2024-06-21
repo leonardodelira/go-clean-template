@@ -29,7 +29,7 @@ func (s *service) DoTranslation(ctx context.Context, input domain.TranslationInp
 		return nil, err
 	}
 
-	result.ID = &id
+	result.ID = id
 
 	return result, nil
 }

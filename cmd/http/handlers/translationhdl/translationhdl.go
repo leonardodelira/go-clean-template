@@ -29,13 +29,15 @@ func (h *httphdl) DoTranslation(c *gin.Context) {
 	input, err := ParseRequest(c)
 	if err != nil {
 		//todo: instancia do logger
-		badRequest(c)
+		badRequest(c, err.Error())
+		return
 	}
 	ctx := c.Request.Context()
-	result, err := h.service.DoTranslation(ctx, input)
+	result, err := h.service.DoTranslation(ctx, *input)
 	if err != nil {
 		//todo: log error
 		badRequest(c)
+		return
 	}
 
 	c.JSON(http.StatusOK, Response{Data: result})
@@ -46,7 +48,7 @@ func (h *httphdl) GetTranslations(c *gin.Context) {
 	t, err := h.service.GetTranslation(ctx)
 	if err != nil {
 		//todo: log error
-		badRequest(c)
+		badRequest(c, err.Error())
 		return
 	}
 
