@@ -6,6 +6,6 @@ import (
 )
 
 type TranslationService interface {
-	GetTranslation(ctx context.Context) ([]domain.Translation, error)
+	GetTranslations(ctx context.Context) ([]domain.Translation, error)
 	DoTranslation(ctx context.Context, input domain.TranslationInput) (*domain.Translation, error)
 }

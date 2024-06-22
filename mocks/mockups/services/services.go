@@ -55,17 +55,17 @@ func (mr *MockTranslationServiceMockRecorder) DoTranslation(ctx, input any) *gom
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DoTranslation", reflect.TypeOf((*MockTranslationService)(nil).DoTranslation), ctx, input)
 }
 
-// GetTranslation mocks base method.
-func (m *MockTranslationService) GetTranslation(ctx context.Context) ([]domain.Translation, error) {
+// GetTranslations mocks base method.
+func (m *MockTranslationService) GetTranslations(ctx context.Context) ([]domain.Translation, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetTranslation", ctx)
+	ret := m.ctrl.Call(m, "GetTranslations", ctx)
 	ret0, _ := ret[0].([]domain.Translation)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetTranslation indicates an expected call of GetTranslation.
-func (mr *MockTranslationServiceMockRecorder) GetTranslation(ctx any) *gomock.Call {
+// GetTranslations indicates an expected call of GetTranslations.
+func (mr *MockTranslationServiceMockRecorder) GetTranslations(ctx any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetTranslation", reflect.TypeOf((*MockTranslationService)(nil).GetTranslation), ctx)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetTranslations", reflect.TypeOf((*MockTranslationService)(nil).GetTranslations), ctx)
 }

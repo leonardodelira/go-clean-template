@@ -5,6 +5,10 @@ export
 run: migration-up
 	GIN_MODE=debug go run main.go
 
+.PHOYNY: unit test
+unit-test:
+	go test ./...
+
 .PHOYNY: migration-create
 migration-create:
 	migrate create -ext sql -dir migrations $(name)

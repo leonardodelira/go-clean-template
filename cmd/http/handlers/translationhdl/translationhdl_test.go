@@ -46,7 +46,7 @@ func TestGetTranslation(t *testing.T) {
 			mock: func(m deps, args *args, want *want) {
 				result := easymocks.TranslationMock()
 				gomock.InOrder(
-					m.serviceTranslation.EXPECT().GetTranslation(gomock.Any()).Return(result, nil),
+					m.serviceTranslation.EXPECT().GetTranslations(gomock.Any()).Return(result, nil),
 				)
 			},
 			args: func() *args {
@@ -65,7 +65,7 @@ func TestGetTranslation(t *testing.T) {
 			mock: func(m deps, args *args, want *want) {
 				error := errors.New("some error occurs")
 				gomock.InOrder(
-					m.serviceTranslation.EXPECT().GetTranslation(gomock.Any()).Return(nil, error),
+					m.serviceTranslation.EXPECT().GetTranslations(gomock.Any()).Return(nil, error),
 				)
 			},
 			args: func() *args {

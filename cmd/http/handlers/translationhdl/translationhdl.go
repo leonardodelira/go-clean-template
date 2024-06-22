@@ -45,7 +45,7 @@ func (h *httphdl) DoTranslation(c *gin.Context) {
 
 func (h *httphdl) GetTranslations(c *gin.Context) {
 	ctx := c.Request.Context()
-	t, err := h.service.GetTranslation(ctx)
+	t, err := h.service.GetTranslations(ctx)
 	if err != nil {
 		//todo: log error
 		badRequest(c, err.Error())

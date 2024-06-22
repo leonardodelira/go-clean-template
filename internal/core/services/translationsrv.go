@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"fmt"
 	"leonardodelira/go-clean-template/internal/core/domain"
 	"leonardodelira/go-clean-template/internal/core/ports"
 )
@@ -21,12 +22,12 @@ func NewTranslationService(translationRepo ports.TranslationRepository, translat
 func (s *service) DoTranslation(ctx context.Context, input domain.TranslationInput) (*domain.Translation, error) {
 	result, err := s.translatorGateway.Translate(ctx, input.Text, input.LanguageDestination)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error on translate in the gateway: %v", err.Error())
 	}
 
 	id, err := s.translationRepo.SaveTranslation(ctx, result)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error on save translation on database: %v", err.Error())
 	}
 
 	result.ID = id
@@ -34,10 +35,10 @@ func (s *service) DoTranslation(ctx context.Context, input domain.TranslationInp
 	return result, nil
 }
 
-func (s *service) GetTranslation(ctx context.Context) ([]domain.Translation, error) {
+func (s *service) GetTranslations(ctx context.Context) ([]domain.Translation, error) {
 	translations, err := s.translationRepo.GetTranslations(ctx)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error on get all translations: %v", err.Error())
 	}
 
 	return translations, nil
